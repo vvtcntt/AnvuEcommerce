@@ -6,20 +6,20 @@ export const environment = {
   production: false,
   application: {
     baseUrl,
-    name: 'AnvuEcommerce',
+    name: 'AnvuEcommerce Admin',
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44333/',
+    issuer: 'https://localhost:5000/',
     redirectUri: baseUrl,
-    clientId: 'AnvuEcommerce_App',
+    clientId: 'AnvuEcommerce_Admin',
     responseType: 'code',
-    scope: 'offline_access AnvuEcommerce',
+    scope: 'offline_access AnvuEcommerce.Admin',
     requireHttps: true,
   },
   apis: {
     default: {
-      url: 'https://localhost:44339',
+      url: 'https://localhost:5001',
       rootNamespace: 'AnvuEcommerce',
     },
   },

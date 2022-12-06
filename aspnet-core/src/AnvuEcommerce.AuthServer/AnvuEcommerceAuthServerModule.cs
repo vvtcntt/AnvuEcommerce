@@ -56,7 +56,7 @@ public class AnvuEcommerceAuthServerModule : AbpModule
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences("AnvuEcommerce");
+                options.AddAudiences("AnvuEcommerce,AnvuEcommerce.Admin");
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });

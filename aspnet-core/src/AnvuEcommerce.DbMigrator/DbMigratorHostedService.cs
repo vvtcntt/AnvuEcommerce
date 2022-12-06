@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using AnvuEcommerce.Data;
 using Serilog;
 using Volo.Abp;
+using AnvuEcommerce.Seeding;
 
 namespace AnvuEcommerce.DbMigrator;
 
@@ -35,7 +36,10 @@ public class DbMigratorHostedService : IHostedService
                 .ServiceProvider
                 .GetRequiredService<AnvuEcommerceDbMigrationService>()
                 .MigrateAsync();
-
+            await application
+               .ServiceProvider
+               .GetRequiredService<IdentityDataSeeder>()
+               .SeedAsync("admin@anvugroup.com","abbc@123$");
             await application.ShutdownAsync();
 
             _hostApplicationLifetime.StopApplication();
