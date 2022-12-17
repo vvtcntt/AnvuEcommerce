@@ -1,4 +1,5 @@
 import type { ProductType } from '../../products/product-type.enum';
+import type { BaseListFilterDto } from '../models';
 
 export interface CreateUpdateProductDto {
   name?: string;
@@ -8,6 +9,7 @@ export interface CreateUpdateProductDto {
   coverPicture?: string;
   visibility: boolean;
   isActive: boolean;
+  sellPrice: number;
   parentId?: string;
   seoMetaDescription?: string;
 }
@@ -20,6 +22,7 @@ export interface ProductDto {
   sku?: string;
   sortOrder: number;
   visibility: boolean;
+  sellPrice: number;
   isActive: boolean;
   categoryId?: string;
   slug?: string;
@@ -43,4 +46,8 @@ export interface ProductInListDto {
   seoMetaDescription?: string;
   description?: string;
   thumbnailPicture?: string;
+}
+
+export interface ProductListFilterDto extends BaseListFilterDto {
+  categoryId?: string;
 }

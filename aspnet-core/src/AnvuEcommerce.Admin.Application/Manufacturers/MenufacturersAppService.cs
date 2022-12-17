@@ -1,7 +1,5 @@
-﻿using AnvuEcommerce.Admin.ProductCategories;
-using AnvuEcommerce.ProductCategories;
-using AnvuEcommerce.Products;
-using System;
+﻿ using AnvuEcommerce.Manufacturers;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +8,19 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace AnvuEcommerce.Admin.Products
+namespace AnvuEcommerce.Admin.Manufacturers
 {
-    public class ProductsAppService : CrudAppService<
-        Product,
-        ProductDto,
+    public class ManufacturersAppService : CrudAppService<
+        Manufacturer,
+        ManufacturerDto,
         Guid,
         PagedResultRequestDto,
-        CreateUpdateProductDto,
-        CreateUpdateProductDto>, 
-        IProductsAppService
+        CreateUpdateManufacturerDto,
+        CreateUpdateManufacturerDto>,
+        IManufacturersAppService
     {
-        private readonly IRepository<Product, Guid> _repository;
-        public ProductsAppService(IRepository<Product, Guid> repository)
+        private readonly IRepository<Manufacturer, Guid> _repository;
+        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository)
             : base(repository)
         {
             _repository = repository;
@@ -34,25 +32,25 @@ namespace AnvuEcommerce.Admin.Products
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        public async Task<List<ProductInListDto>> GetListAllAsync()
+        public async Task<List<ManufacturerInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
             query = query.Where(x => x.IsActive == true);
             var data = await AsyncExecuter.ToListAsync(query);
 
-            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
-            }
+            return ObjectMapper.Map<List<Manufacturer>, List<ManufacturerInListDto>>(data);
+              
+                }
 
-        public async Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
+        public async Task<PagedResultDto<ManufacturerInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await _repository.GetQueryableAsync();
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
-            query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId==input.CategoryId);
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
             var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
-            return new PagedResultDto<ProductInListDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data));
+            return new PagedResultDto<ManufacturerInListDto>(totalCount, ObjectMapper.Map<List<Manufacturer>, List<ManufacturerInListDto>>(data));
 
         }
     }

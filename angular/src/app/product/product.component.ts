@@ -1,22 +1,111 @@
-import { AuthService } from '@abp/ng.core';
-import { Component } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { PagedResultDto } from '@abp/ng.core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ProductCategoriesService, ProductCategoryInListDto } from '@proxy/admin/product-categories';
+import { ProductDto, ProductInListDto, ProductsService } from '@proxy/admin/products';
+import { DialogService } from 'primeng/dynamicdialog';
+  import { Subject, takeUntil } from 'rxjs';
+import { NotificationService } from '../shared/services/notification.service';
+import { ProductDetailComponent } from './product-detail.component';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent {
-  blockedPanel:boolean=false;
-  items=[];
-  get hasLoggedIn(): boolean {
-    return this.oAuthService.hasValidAccessToken();
+export class ProductComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
+  blockedPanel: boolean = false;
+  items: ProductInListDto[] = [];
+
+  //Paging variables
+  public skipCount: number = 0;
+  public maxResultCount: number = 10;
+  public totalCount: number;
+
+  //Filter
+  productCategories: any[] = [];
+  keyword: string = '';
+  categoryId: string = '';
+ 
+ 
+
+  constructor(private productService: ProductsService, private productCategoryService: ProductCategoriesService,
+    private dialogService: DialogService, private notificationService: NotificationService ) {}
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
-  constructor(private oAuthService: OAuthService, private authService: AuthService) {}
+  ngOnInit(): void {
+    this.loadProductCategories();
+    this.loadData();
+  }
 
-  login() {
-    this.authService.navigateToLogin();
+  loadData() {
+    this.toggleBlockUI(true);
+    this.productService
+      .getListFilter({
+        keyword: this.keyword,
+        categoryId: this.categoryId,
+        maxResultCount: this.maxResultCount,
+        skipCount: this.skipCount,
+      })
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: PagedResultDto<ProductInListDto>) => {
+          this.items = response.items;
+          this.totalCount = response.totalCount;
+          this.toggleBlockUI(false);
+
+        },
+        error: () => {
+          this.toggleBlockUI(false);
+
+        },
+      });
+  }
+
+  loadProductCategories(){
+    this.productCategoryService.getListAll()
+    .subscribe((response: ProductCategoryInListDto[])=>{
+      response.forEach(element=>{
+        this.productCategories.push({
+          value: element.id,
+          label: element.name
+        })
+      });
+    });
+  }
+
+  pageChanged(event: any): void {
+    this.skipCount = (event.page -1) * this.maxResultCount;
+    this.maxResultCount = event.rows;
+    this.loadData();
+  }
+  showAddModal() {
+    const ref = this.dialogService.open(ProductDetailComponent, {
+      header: 'Thêm mới sản phẩm',
+      width: '70%',
+    });
+
+    ref.onClose.subscribe((data: ProductDto) => {
+      if (data) {
+        this.loadData();
+        this.notificationService.showSuccess("Thêm sản phẩm thành công");
+      }
+    });
+  }
+  private toggleBlockUI(enabled:boolean)
+  {
+    if(enabled==true)
+    {
+      this.blockedPanel=true;
+    }
+    else
+    {
+      setTimeout(() => {
+        this.blockedPanel=false;
+      }, 1000);
+    }
   }
 }

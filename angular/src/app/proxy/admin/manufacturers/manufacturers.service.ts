@@ -1,19 +1,20 @@
-import type { CreateUpdateProductDto, ProductDto, ProductInListDto, ProductListFilterDto } from './models';
+import type { CreateUpdateManufacturerDto, ManufacturerDto, ManufacturerInListDto } from './models';
 import { RestService } from '@abp/ng.core';
 import type { PagedResultDto, PagedResultRequestDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
+import type { BaseListFilterDto } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
+export class ManufacturersService {
   apiName = 'Default';
   
 
-  create = (input: CreateUpdateProductDto) =>
-    this.restService.request<any, ProductDto>({
+  create = (input: CreateUpdateManufacturerDto) =>
+    this.restService.request<any, ManufacturerDto>({
       method: 'POST',
-      url: '/api/app/products',
+      url: '/api/app/manufacturers',
       body: input,
     },
     { apiName: this.apiName });
@@ -22,7 +23,7 @@ export class ProductsService {
   delete = (id: string) =>
     this.restService.request<any, void>({
       method: 'DELETE',
-      url: `/api/app/products/${id}`,
+      url: `/api/app/manufacturers/${id}`,
     },
     { apiName: this.apiName });
   
@@ -30,50 +31,50 @@ export class ProductsService {
   deleteMultiple = (ids: string[]) =>
     this.restService.request<any, void>({
       method: 'DELETE',
-      url: '/api/app/products/multiple',
+      url: '/api/app/manufacturers/multiple',
       params: { ids },
     },
     { apiName: this.apiName });
   
 
   get = (id: string) =>
-    this.restService.request<any, ProductDto>({
+    this.restService.request<any, ManufacturerDto>({
       method: 'GET',
-      url: `/api/app/products/${id}`,
+      url: `/api/app/manufacturers/${id}`,
     },
     { apiName: this.apiName });
   
 
   getList = (input: PagedResultRequestDto) =>
-    this.restService.request<any, PagedResultDto<ProductDto>>({
+    this.restService.request<any, PagedResultDto<ManufacturerDto>>({
       method: 'GET',
-      url: '/api/app/products',
+      url: '/api/app/manufacturers',
       params: { maxResultCount: input.maxResultCount, skipCount: input.skipCount },
     },
     { apiName: this.apiName });
   
 
   getListAll = () =>
-    this.restService.request<any, ProductInListDto[]>({
+    this.restService.request<any, ManufacturerInListDto[]>({
       method: 'GET',
-      url: '/api/app/products/all',
+      url: '/api/app/manufacturers/all',
     },
     { apiName: this.apiName });
   
 
-  getListFilter = (input: ProductListFilterDto) =>
-    this.restService.request<any, PagedResultDto<ProductInListDto>>({
+  getListFilter = (input: BaseListFilterDto) =>
+    this.restService.request<any, PagedResultDto<ManufacturerInListDto>>({
       method: 'GET',
-      url: '/api/app/products/filter',
-      params: { categoryId: input.categoryId, keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+      url: '/api/app/manufacturers/filter',
+      params: { skipCount: input.skipCount, maxResultCount: input.maxResultCount, keyword: input.keyword },
     },
     { apiName: this.apiName });
   
 
-  update = (id: string, input: CreateUpdateProductDto) =>
-    this.restService.request<any, ProductDto>({
+  update = (id: string, input: CreateUpdateManufacturerDto) =>
+    this.restService.request<any, ManufacturerDto>({
       method: 'PUT',
-      url: `/api/app/products/${id}`,
+      url: `/api/app/manufacturers/${id}`,
       body: input,
     },
     { apiName: this.apiName });
