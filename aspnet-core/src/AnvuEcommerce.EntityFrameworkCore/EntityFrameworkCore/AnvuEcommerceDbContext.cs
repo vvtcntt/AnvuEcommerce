@@ -6,6 +6,7 @@ using AnvuEcommerce.Configurations.ProductAttributes;
 using AnvuEcommerce.Configurations.ProductCategories;
 using AnvuEcommerce.Configurations.Products;
 using AnvuEcommerce.Configurations.Promotions;
+using AnvuEcommerce.IdentitySettings;
 using AnvuEcommerce.Inventories;
 using AnvuEcommerce.InventoryTickets;
 using AnvuEcommerce.Manufacturers;
@@ -90,6 +91,7 @@ public class AnvuEcommerceDbContext :
     public DbSet<PromotionManufacturer> PromotionManufacturers { get; set; }
     public DbSet<PromotionProduct> PromotionProducts { get; set; }
     public DbSet<PromotionUsageHistory> PromotionUsageHistories { get; set; }
+    public DbSet<IdentitySetting> IdentitySettings { get; set; }
 
 
     #endregion

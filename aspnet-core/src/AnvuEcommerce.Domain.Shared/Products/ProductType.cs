@@ -6,7 +6,7 @@ namespace AnvuEcommerce.Products
 {
     public  enum ProductType
     {
-        Single,
+        Single=1,
         Grouped,
         Configurable,
         Bundle,

@@ -6,7 +6,7 @@ namespace AnvuEcommerce.InventoryTickets
 {
     public enum TicketType
     {
-        Import,
+        Import=1,
         Export
     }
 }

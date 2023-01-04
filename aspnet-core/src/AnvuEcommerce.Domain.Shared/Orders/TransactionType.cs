@@ -6,7 +6,7 @@ namespace AnvuEcommerce.Orders
 {
     public enum TransactionType
     {
-        ConfirmOrder,
+        ConfirmOrder = 1,
         StartProcessing,
         FinishOrder,
         CancelOrder

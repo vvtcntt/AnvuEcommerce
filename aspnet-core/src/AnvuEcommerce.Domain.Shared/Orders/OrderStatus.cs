@@ -6,7 +6,7 @@ namespace AnvuEcommerce.Orders
 {
     public enum OrderStatus
     {
-        New,
+        New = 1,
         Confirmed,
         Processing,
         Shipping,

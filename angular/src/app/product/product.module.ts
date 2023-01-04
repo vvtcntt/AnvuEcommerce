@@ -16,10 +16,16 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {EditorModule} from 'primeng/editor';
 import { AnvuSharedModule } from '../shared/modules/anvu-shared.module';
+import {BadgeModule} from 'primeng/badge';
+import {ImageModule} from 'primeng/image';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ProductAttributeComponent } from './product-attribute.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
-  declarations: [ProductComponent,ProductDetailComponent],
+  declarations: [ProductComponent,ProductDetailComponent,ProductAttributeComponent],
   imports: [SharedModule, ProductRoutingModule,PanelModule,
     TableModule,
     PaginatorModule,
@@ -32,10 +38,17 @@ import { AnvuSharedModule } from '../shared/modules/anvu-shared.module';
     CheckboxModule,
     InputTextareaModule,
     EditorModule,
-    AnvuSharedModule
+    AnvuSharedModule,
+    BadgeModule,
+    ImageModule,
+    ConfirmDialogModule ,
+    FormsModule,
+    ReactiveFormsModule,
+    CalendarModule
   ],
     entryComponents:[
-      ProductDetailComponent
+      ProductDetailComponent,
+      ProductAttributeComponent
     ]
 })
 export class ProductModule {}

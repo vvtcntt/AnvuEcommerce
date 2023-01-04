@@ -1,5 +1,6 @@
 ﻿ using AnvuEcommerce.Manufacturers;
- using System;
+using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace AnvuEcommerce.Admin.Manufacturers
 {
+    [Authorize]
     public class ManufacturersAppService : CrudAppService<
         Manufacturer,
         ManufacturerDto,

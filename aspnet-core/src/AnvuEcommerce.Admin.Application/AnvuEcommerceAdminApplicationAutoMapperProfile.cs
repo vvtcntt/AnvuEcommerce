@@ -1,7 +1,9 @@
 ﻿using AnvuEcommerce.Admin.Manufacturers;
+using AnvuEcommerce.Admin.ProductAttributes;
 using AnvuEcommerce.Admin.ProductCategories;
 using AnvuEcommerce.Admin.Products;
 using AnvuEcommerce.Manufacturers;
+using AnvuEcommerce.ProductAttributes;
 using AnvuEcommerce.ProductCategories;
 using AnvuEcommerce.Products;
 using AutoMapper;
@@ -25,6 +27,11 @@ public class AnvuEcommerceAdminApplicationAutoMapperProfile : Profile
         CreateMap<Manufacturer, ManufacturerDto>();
         CreateMap<Manufacturer, ManufacturerInListDto>();
         CreateMap<CreateUpdateManufacturerDto, Manufacturer>();
+
+        //attribute
+        CreateMap<ProductAttribute, ProductAttributeDto>();
+        CreateMap<ProductAttribute, ProductAttributeInListDto>();
+        CreateMap<CreateUpdateProductAttributeDto, ProductAttribute>();
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */

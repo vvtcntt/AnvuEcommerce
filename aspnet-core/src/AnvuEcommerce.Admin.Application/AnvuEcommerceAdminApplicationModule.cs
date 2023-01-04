@@ -1,6 +1,8 @@
 ﻿using AnvuEcommerce.Admin;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.FileSystem;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.FluentValidation;
 using Volo.Abp.Identity;
@@ -20,7 +22,9 @@ namespace AnvuEcommerce;
     typeof(AbpTenantManagementApplicationModule),
     typeof(AbpFeatureManagementApplicationModule),
     typeof(AbpSettingManagementApplicationModule),
-    typeof(AbpFluentValidationModule)
+    typeof(AbpFluentValidationModule),
+    typeof(AbpBlobStoringFileSystemModule)
+
     )]
 public class AnvuEcommerceAdminApplicationModule : AbpModule
 {
@@ -29,6 +33,16 @@ public class AnvuEcommerceAdminApplicationModule : AbpModule
         Configure<AbpAutoMapperOptions>(options =>
         {
             options.AddMaps<AnvuEcommerceAdminApplicationModule>();
+        });
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers.ConfigureDefault(container =>
+            {
+                container.UseFileSystem(fileSystem =>
+                {
+                    fileSystem.BasePath = "C:\\anvu-ecommerce";
+                });
+            });
         });
     }
 }

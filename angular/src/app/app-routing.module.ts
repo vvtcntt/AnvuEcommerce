@@ -18,7 +18,12 @@ const routes: Routes = [
     path: 'product',
      loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
      component:AppLayoutComponent
-    }
+    },
+    {
+      path: 'attribute',
+       loadChildren: () => import('./ProductAttribute/attribute.module').then(m => m.AttributeModule),
+       component:AppLayoutComponent
+      }
 ];
 
 @NgModule({

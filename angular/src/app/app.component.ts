@@ -9,6 +9,10 @@ import { AuthService } from './shared/services/auth.service';
   template: `
      
     <router-outlet></router-outlet>
+    <p-confirmDialog header="Xác nhận" acceptLabel="Có" rejectLabel="Không" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <p-toast position="top-right"></p-toast>
+
+
   `,
 })
 export class AppComponent {

@@ -6,7 +6,7 @@ namespace AnvuEcommerce.Promotions
 {
     public enum DiscountUnit
     {
-        MoneyAmount,
+        MoneyAmount =1,
         Percentage
     }
 }

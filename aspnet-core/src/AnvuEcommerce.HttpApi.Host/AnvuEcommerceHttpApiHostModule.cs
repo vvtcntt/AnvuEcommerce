@@ -28,6 +28,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AnvuEcommerce;
 
@@ -105,6 +106,12 @@ public class AnvuEcommerceHttpApiHostModule : AbpModule
                 options.Authority = configuration["AuthServer:Authority"];
                 options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                 options.Audience = "AnvuEcommerce";
+                options.TokenValidationParameters = new
+                   TokenValidationParameters()
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                };
             });
     }
 

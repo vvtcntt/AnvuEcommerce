@@ -6,10 +6,11 @@ namespace AnvuEcommerce.ProductAttributes
 {
     public enum AttributeType
     {
-        Date,
+        Int = 1,
         Varchar,
         Text,
-        Int,
-        Decimal
+        Decimal,
+      Date
+
     }
 }

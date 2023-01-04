@@ -9,6 +9,28 @@ namespace AnvuEcommerce.Products
 {
     public class Product:AuditedAggregateRoot<Guid>
     {
+        public Product() { }
+        public Product(Guid id,Guid manufacturerId, string name, string code, ProductType productType, string sKU, double sellPrice, int sortOrder, bool visibility, bool isActive, Guid categoryId, string slug, string seoMetaDescription, string description, string thumbnailPicture, string categoryName, string categorySlug)
+        {
+            Id = id;
+            ManufacturerId = manufacturerId;
+            Name = name;
+            Code = code;
+            ProductType = productType;
+            SKU = sKU;
+            SellPrice = sellPrice;
+            SortOrder = sortOrder;
+            Visibility = visibility;
+            IsActive = isActive;
+            CategoryId = categoryId;
+            Slug = slug;
+            SeoMetaDescription = seoMetaDescription;
+            Description = description;
+            ThumbnailPicture = thumbnailPicture;
+            CategoryName = categoryName;
+            CategorySlug = categorySlug;
+        }
+
         public Guid ManufacturerId { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
@@ -24,6 +46,8 @@ namespace AnvuEcommerce.Products
         public string SeoMetaDescription { get; set; }
         public string Description { get; set; }
         public string ThumbnailPicture { get; set; }
+        public string CategoryName { get; set; }
+        public string CategorySlug { get; set; }
 
     }
 }

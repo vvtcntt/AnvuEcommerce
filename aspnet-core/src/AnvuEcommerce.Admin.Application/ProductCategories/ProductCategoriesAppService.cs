@@ -1,5 +1,6 @@
 ﻿using AnvuEcommerce.Admin.ProductCategories;
 using AnvuEcommerce.ProductCategories;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace AnvuEcommerce.Admin.ProductCategories
 {
+    [Authorize]
     public class ProductCategoriesAppService : CrudAppService<
         ProductCategory,
         ProductCategoryDto,

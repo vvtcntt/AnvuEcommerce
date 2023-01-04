@@ -6,7 +6,7 @@ namespace AnvuEcommerce.Orders
 {
     public enum PaymentMethod
     {
-        COD,
+        COD = 1,
         OnlinePayment,
         TransferByBank,
         CreditCard
