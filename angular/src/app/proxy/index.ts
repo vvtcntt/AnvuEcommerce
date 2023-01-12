@@ -1,4 +1,5 @@
 import * as Admin from './admin';
 import * as ProductAttributes from './product-attributes';
 import * as Products from './products';
-export { Admin, ProductAttributes, Products };
+import * as Volo from './volo';
+export { Admin, ProductAttributes, Products, Volo };

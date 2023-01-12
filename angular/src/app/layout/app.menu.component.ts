@@ -23,11 +23,26 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Sản phẩm',
                 items: [
-                    { label: 'Danh sách sản phẩm', icon: 'pi pi-fw pi-id-card', routerLink: ['/product'] },
-                    { label: 'Danh sách thuộc tính', icon: 'pi pi-fw pi-id-card', routerLink: ['/attribute'] },
+                    { label: 'Danh sách sản phẩm', 
+                    icon: 'pi pi-fw pi-id-card', 
+                    routerLink: ['/catalog/product'] ,
+                    permission: 'AnvuEcomAdminCatalog.Product',
+                },
+                    { label: 'Danh sách thuộc tính', 
+                    icon: 'pi pi-fw pi-id-card', 
+                    routerLink: ['/catalog/attribute'],
+                    permission: 'AnvuEcomAdminCatalog.Attribute',
+                 },
                 ]
             }
-           
+            ,
+            {
+                label: 'Hệ Thống',
+                items: [
+                    { label: 'Danh sách quyền', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/role'],permission: 'AbpIdentity.Roles', },
+                    { label: 'Danh sách người dùng', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/user'],permission: 'AbpIdentity.Users' },
+                ]
+            }
              
         ];
     }

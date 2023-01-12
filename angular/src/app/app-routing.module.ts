@@ -15,15 +15,15 @@ const routes: Routes = [
    }
    ,
   {
-    path: 'product',
-     loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
+    path: 'system',
+     loadChildren: () => import('./system/system.module').then(m => m.SystemModule),
      component:AppLayoutComponent
     },
     {
-      path: 'attribute',
-       loadChildren: () => import('./ProductAttribute/attribute.module').then(m => m.AttributeModule),
+      path: 'catalog',
+       loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule),
        component:AppLayoutComponent
-      }
+      } 
 ];
 
 @NgModule({

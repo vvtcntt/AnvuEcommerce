@@ -10,5 +10,7 @@ public static class AnvuEcommerceDomainErrorCodes
     public const string ProductAttributeIdIsNotExists = "AnvuEcommerce:ProductAttributeIdIsNotExists";
 
     public const string ProductAttributeValueIsNotValid = "AnvuEcommerce:ProductAttributeValueIsNotValid";
-    /* You can add your business exception error codes here, as constants */
+    public const string RoleNameAlreadyExists = "AnvuEcommerce:RoleNameAlreadyExists";
+
+     /* You can add your business exception error codes here, as constants */
 }
