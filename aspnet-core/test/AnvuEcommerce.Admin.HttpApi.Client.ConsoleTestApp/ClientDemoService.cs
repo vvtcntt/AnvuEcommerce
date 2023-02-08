@@ -7,7 +7,7 @@ namespace AnvuEcommerce.Admin.HttpApi.Client.ConsoleTestApp;
 
 public class ClientDemoService : ITransientDependency
 {
-    private readonly IProfileAppService _profileAppService;
+    private readonly  IProfileAppService _profileAppService;
 
     public ClientDemoService(IProfileAppService profileAppService)
     {

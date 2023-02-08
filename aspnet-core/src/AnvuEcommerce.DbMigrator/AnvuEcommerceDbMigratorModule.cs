@@ -1,4 +1,5 @@
-﻿using AnvuEcommerce.EntityFrameworkCore;
+﻿using AnvuEcommerce.Admin;
+using AnvuEcommerce.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Modularity;

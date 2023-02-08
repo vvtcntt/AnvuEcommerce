@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Autofac" Version="6.0.1" />
-    <ProjectReference Include="..\AnvuEcommerce.Application.Contracts\AnvuEcommerce.Application.Contracts.csproj" />
+    <ProjectReference Include="..\AnvuEcommerce.Admin.Application.Contracts\AnvuEcommerce.Admin.Application.Contracts.csproj" />
     <ProjectReference Include="..\AnvuEcommerce.EntityFrameworkCore\AnvuEcommerce.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

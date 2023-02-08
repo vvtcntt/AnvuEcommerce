@@ -29,7 +29,7 @@ namespace AnvuEcommerce.Admin.Products
         CreateUpdateProductDto>, 
         IProductsAppService
     {
-        private readonly IRepository<Product, Guid> _repository;
+        //private readonly IRepository<Product, Guid> _repository;
         private readonly ProductManager _productManager;
         private readonly IRepository<ProductCategory> _productCategoryRepository;
         private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer;

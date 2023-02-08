@@ -10,7 +10,7 @@ namespace AnvuEcommerce.Admin.HttpApi.Client.ConsoleTestApp;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AnvuEcommerceHttpApiClientModule),
+    typeof(AnvuEcommerceAdminHttpApiClientModule),
     typeof(AbpHttpClientIdentityModelModule)
     )]
 public class AnvuEcommerceConsoleApiClientModule : AbpModule
